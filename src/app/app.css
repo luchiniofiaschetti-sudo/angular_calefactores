@@ -1,0 +1,30 @@
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .saludo-user {
+    font-size: 0.95rem;
+    color: #2c3e50;
+    background-color: #eef2f5;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  
+  .btn-logout {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    text-decoration: underline;
+  }
+  
+  .btn-logout:hover {
+    color: #bd2130;
+  }
+  

@@ -1,0 +1,35 @@
+<div class="admin-container">
+    <h2>Panel de Administración</h2>
+  
+    <!-- Lista de modelos para referencia -->
+    <div *ngIf="modelos$ | async as modelos">
+      <h3>Modelos existentes</h3>
+      <ul>
+        <li *ngFor="let m of modelos">
+          {{ m.id_modelo }} - {{ m.nombre }} ({{ m.categoria }})
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Formulario para agregar -->
+    <form [formGroup]="formAgregar" (ngSubmit)="onAgregar()">
+      <h3>Agregar Modelo</h3>
+      <input formControlName="nombre" placeholder="Nombre" />
+      <input formControlName="descripcion" placeholder="Descripción" />
+      <input formControlName="categoria" placeholder="Categoría" />
+      <input formControlName="imagen" placeholder="URL Imagen" />
+      <button type="submit" [disabled]="formAgregar.invalid">Agregar</button>
+    </form>
+  
+    <!-- Formulario para modificar -->
+    <form [formGroup]="formModificar" (ngSubmit)="onModificar()">
+      <h3>Modificar Modelo</h3>
+      <input formControlName="id" placeholder="ID del modelo" />
+      <input formControlName="nombre" placeholder="Nombre" />
+      <input formControlName="descripcion" placeholder="Descripción" />
+      <input formControlName="categoria" placeholder="Categoría" />
+      <input formControlName="imagen" placeholder="URL Imagen" />
+      <button type="submit" [disabled]="formModificar.invalid">Modificar</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,96 @@
+/* --- Estructura de dos columnas general --- */
+:host {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+/* El bloque izquierdo ahora es el contenedor principal y fluye hacia abajo naturalmente */
+.contenido-principal {
+  flex: 1;
+}
+
+/* Estilo del título ahora que está en su lugar */
+h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* El menú lateral fijo a la DERECHA */
+aside.filtros {
+  width: 250px;
+  position: sticky;
+  top: 20px;
+}
+
+
+/* --- TU CSS ORIGINAL --- */
+.modelos-grid {
+  display: grid;                /* activa el modo grilla */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;                     /* espacio entre tarjetas */
+  padding: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+  color: #2c3e50;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card a {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.card a:hover {
+  background-color: #2980b9;
+}
+
+aside a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block; 
+  margin-bottom: 0.5rem;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+  :host {
+    flex-direction: column;
+  }
+  aside.filtros {
+    width: 100%;
+    position: static;
+  }
+}

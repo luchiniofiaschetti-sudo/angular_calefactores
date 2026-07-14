@@ -1,0 +1,60 @@
+<div class="modulo-ventas">
+  
+  <!-- COLUMNA IZQUIERDA: Catálogo de calefactores -->
+  <main class="seccion-catalogo">
+    <h2>Lista de Calefactores</h2>
+
+    <div *ngIf="calefactores$ | async as calefactores; else cargando">
+      <div *ngIf="calefactores.length === 0; else lista" class="sin-calefactores">
+        <p>No hay calefactores disponibles para este modelo.</p>
+      </div>
+
+      <ng-template #lista>
+        <table class="tabla-calefactores">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Potencia (W)</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Cantidad</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let calefactor of calefactores">
+              <td>{{ calefactor.nombre }}</td>
+              <td>{{ calefactor.tipo }}</td>
+              <td>{{ calefactor.potencia }}</td>
+              <td>${{ calefactor.precio }}</td>
+              <td>{{ calefactor.stock }}</td>
+              <td>
+                <app-input-integer
+                  [cantidad]="calefactor.cantidad"
+                  [maximo]="calefactor.stock"
+                  (cantidadChange)="calefactor.cantidad = $event">
+                </app-input-integer>
+              </td>
+              <td>
+                <button [disabled]="calefactor.cantidad === 0" (click)="agregarCantidad(calefactor, calefactor.cantidad)">
+                  Agregar al carrito
+                </button>            
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </div>
+
+    <ng-template #cargando>
+      <p>Cargando calefactores...</p>
+    </ng-template>
+  </main>
+
+  <!-- COLUMNA DERECHA: El carrito como un aside visual (Siempre visible) -->
+  <aside class="seccion-carrito">
+    <app-compra></app-compra>
+  </aside>
+
+</div>
