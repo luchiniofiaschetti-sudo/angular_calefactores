@@ -7,6 +7,8 @@
       <ul>
         <li *ngFor="let m of modelos">
           {{ m.id_modelo }} - {{ m.nombre }} ({{ m.categoria }})
+          <button (click)="seleccionarModelo(m)">Modificar</button>
+          <button (click)="confirmarEliminar(m)">Eliminar</button>
         </li>
       </ul>
     </div>
@@ -24,7 +26,7 @@
     <!-- Formulario para modificar -->
     <form [formGroup]="formModificar" (ngSubmit)="onModificar()">
       <h3>Modificar Modelo</h3>
-      <input formControlName="id" placeholder="ID del modelo" />
+      <input formControlName="id_modelo" placeholder="ID del modelo" />
       <input formControlName="nombre" placeholder="Nombre" />
       <input formControlName="descripcion" placeholder="Descripción" />
       <input formControlName="categoria" placeholder="Categoría" />

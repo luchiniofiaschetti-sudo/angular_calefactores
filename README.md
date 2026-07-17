@@ -1,59 +1,58 @@
-# Calefactores
+# Proyecto Angular - Catálogo de Calefactores
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.1.
+## Integrantes
+- **Nombre:** Luciano Fiaschetti
+- **DNI:** 38524820
+- **Email:** luchiniofiaschetti@gmail.com
+- **Localidad:** Tandil
 
-## Development server
+---
 
-To start a local development server, run:
+## Descripción
+Este proyecto es una aplicación web desarrollada en **Angular** que permite visualizar, administrar y consumir un catálogo de modelos y calefactores en tiempo real.  
+La aplicación se conecta de forma reactiva con nuestra propia API (`api_calefactores`), la cual está desarrollada en **PHP** bajo una arquitectura **MVC** en **MySQL**.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Funcionalidades principales
+- **Listado dinámico** de modelos con filtrado por categorías y ordenamiento.
+- **Panel de administración protegido**: Sistema de login seguro con manejo de tokens (JWT) para realizar operaciones CRUD.
+- **CRUD (Panel Admin)**: Permite agregar, modificar y eliminar modelos con actualización automática de la interfaz sin necesidad de recargar la página.
+- **Auto-Despliegue de Base de Datos**: El backend cuenta con una lógica de inicialización automática. No requiere importar ningún script `.sql` de forma manual.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Requisitos previos
+Para que el entorno completo funcione correctamente es necesario contar con:
+- **Node.js** y **Angular CLI** instalados en el sistema.
+   (creado con version:
+      Angular CLI       : 22.0.1
+      Angular           : 22.0.1
+      Node.js           : 22.22.3
+      Package Manager   : npm 10.9.8
+      Operating System  : win32 ia32
+   )
+- **XAMPP** (servidor local con Apache y MySQL activos).
+- La carpeta del backend `api_calefactores` ubicada dentro del directorio `htdocs` de XAMPP.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Pasos para desplegar el proyecto
 
-```bash
-ng generate --help
-```
+### 1. Levantar el Backend (API PHP)
+1. Copiá la carpeta `api_calefactores` dentro de tu directorio `xampp/htdocs/`.
+2. Abrí el panel de XAMPP e iniciá los módulos de **Apache** y **MySQL**.
+3. *Nota:* No es necesario crear la base de datos ni importar tablas en phpMyAdmin. La API detectará la ausencia de la base de datos y la creará automáticamente con datos de prueba en la primera petición.
 
-## Building
+### 2. Levantar el Frontend (Angular)
+1. Abrí una terminal dentro de la carpeta del proyecto de Angular (`calefactores`).
+2. Iniciá el servidor de desarrollo de Angular: **ng serve**
+4. Abrí tu navegador e ingresá a: `http://localhost:4200`
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Credenciales de acceso para pruebas (Panel Admin)
+Para ingresar al panel de administración y probar las acciones de agregar, modificar o eliminar, utilizá los siguientes datos:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Usuario**: `webadmin` 
+- **Contraseña**: `admin` 

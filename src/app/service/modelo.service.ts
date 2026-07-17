@@ -33,8 +33,11 @@ export class ModeloService {
     return this.http.post(`${this.apiUrl}`, modelo);
   }
 
-  public modificarModelo(id: number, modelo: Modelo): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, modelo);
+  public modificarModelo(id_modelo: number, modelo: Modelo): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id_modelo}`, modelo);
   }
 
+  public eliminarModelo(id_modelo: number): Observable <any> {
+    return  this.http.delete(`${this.apiUrl}/${id_modelo}`);
+  }
 }

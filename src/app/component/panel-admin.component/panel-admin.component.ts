@@ -32,7 +32,7 @@ export class PanelAdminComponent {
     });
 
     this.formModificar = this.fb.group({
-      id: ['', Validators.required],
+      id_modelo: ['', Validators.required],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       categoria: ['', Validators.required],
@@ -43,8 +43,20 @@ export class PanelAdminComponent {
     this.modelos$ = this.modeloService.getModelos();
   }
 
+  public seleccionarModelo(m: Modelo): void {
+    this.formModificar.patchValue({
+      id_modelo: m.id_modelo,
+      nombre: m.nombre,
+      descripcion: m.descripcion,
+      categoria: m.categoria,
+      imagen: m.imagen,
+    })
+  }
+
   public onAgregar(): void {
-    if (this.formAgregar.invalid) return;
+    if (this.formAgregar.invalid) {
+      return;
+    }
     const nuevoModelo = this.formAgregar.value;
 
     this.modeloService.agregarModelo(nuevoModelo).subscribe({
@@ -59,17 +71,44 @@ export class PanelAdminComponent {
   }
 
   public onModificar(): void {
-    if (this.formModificar.invalid) return;
-    const { id, ...modeloActualizado } = this.formModificar.value;
-
-    this.modeloService.modificarModelo(id, modeloActualizado).subscribe({
+    if (this.formModificar.invalid) {
+      return;
+    }
+  
+    const modeloActualizado = {
+      ...this.formModificar.value,
+      id_modelo: Number(this.formModificar.value.id_modelo)
+    };
+  
+    this.modeloService.modificarModelo(modeloActualizado.id_modelo, modeloActualizado).subscribe({
       next: () => {
         alert('Modelo modificado correctamente');
-        this.formModificar.reset(); // 1. Limpia los casilleros del formulario de modificación
-        this.modelos$ = this.modeloService.getModelos(); // 2. Refresca la lista en tiempo real
+        this.formModificar.reset();
+        this.modelos$ = this.modeloService.getModelos();
       },
-      // 3. Agregamos el tipado estricto ': any' para el compilador
       error: (err: any) => console.error('Error al modificar modelo:', err)
+    });
+  }
+
+  public confirmarEliminar(m: Modelo): void {
+    if (confirm(`¿Seguro que deseas eliminar el modelo "${m.nombre}"?`)) {
+      this.eliminarModelo(m);
+    }
+  }
+    
+  public eliminarModelo(m: Modelo): void {
+    
+    if(!m.id_modelo) {
+      alert('Error');
+      return;   
+    }
+
+    this.modeloService.eliminarModelo(m.id_modelo).subscribe({
+      next: () => {
+        alert('Modelo eliminado con exito');
+        this.modelos$ = this.modeloService.getModelos();
+      },
+      error: (err: any) => console.error('Error al eliminar el modelo: ', err)
     });
   }
 }
