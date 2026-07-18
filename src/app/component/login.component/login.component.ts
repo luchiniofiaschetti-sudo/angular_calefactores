@@ -38,11 +38,6 @@ export class LoginComponent {
 
         console.log('Login correcto. Token verificado:', token);
         alert(`¡Bienvenido ${usuario}!`);
-        /* 
-          Para que el componente principal 'App' se entere del nombre en este preciso segundo
-          sin necesidad de recargar la página con F5, forzamos una recarga limpia del navegador.
-          Esto limpia la memoria de Angular, activa el Interceptor y dibuja el saludo al instante.
-        */
         window.location.href = '/admin'; 
       },
       error: (err: any) => {

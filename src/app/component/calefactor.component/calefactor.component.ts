@@ -31,9 +31,9 @@ export class CalefactorComponent implements OnInit {
           catchError(error => {
             console.warn('API respondió con error (ej. 404), devolviendo array vacío:', error);
             if (error.status === 404) {
-              return of([]); // 'of([])' crea un observable con un array vacío de inmediato
+              return of([]); // 'of([])' crea un observable con un array vacio de inmediato
             }
-            // Si es otro tipo de error (como un 500 de servidor caído), lo dejamos pasar o relanzamos
+            // Si es otro tipo de error (como un 500 de servidor caido), lo dejamos pasar o relanzamos
             return of([]); 
           })
 

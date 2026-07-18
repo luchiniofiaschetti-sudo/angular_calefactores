@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { AuthService } from './service/auth/auth.service.js'; // <-- Asegurate de que la ruta sea correcta (añadí .js si es necesario)
+import { AuthService } from './service/auth/auth.service.js';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,13 @@ import { AuthService } from './service/auth/auth.service.js'; // <-- Asegurate d
   styleUrls: ['./app.css'],
 })
 export class App implements OnInit {
-  // Inyección de dependencias moderna
+  // Inyección de dependencias
   public authService = inject(AuthService);
   private router = inject(Router);
 
   protected readonly title = signal('calefactores');
   
-  // Exponemos el flujo observable de login para usarlo en el HTML con el pipe async
+  // Flujo observable de login para usarlo en el HTML con el pipe async
   public isLoggedIn$ = this.authService.isLoggedIn$;
   public nombreUsuario: string = '';
 

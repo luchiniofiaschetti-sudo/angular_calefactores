@@ -10,10 +10,8 @@
   
   <nav>
     <a routerLink="/modelos">Inicio</a> |
-    
-    <!-- CASO VISITANTE: Si NO está logueado, ve el acceso a Iniciar Sesión / Registrarse -->
-    <ng-container *ngIf="!(isLoggedIn$ | async)">
-      <a routerLink="/registrarse">Registrarse / Login</a>
+      <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <a routerLink="/registrarse">Iniciar Sesion</a>
     </ng-container>
 
     <!-- CASO ADMINISTRADOR: Si SÍ está logueado, ve el acceso al panel y el botón de logout -->

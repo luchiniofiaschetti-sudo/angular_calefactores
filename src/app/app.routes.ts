@@ -11,17 +11,12 @@ export const routes: Routes = [
   { path: 'modelos', component: ModelosComponent },
   { path: 'modelos/:id_modelo/calefactores', component: CalefactorComponent },
   { path: 'registrarse', component: LoginComponent }, // Mantenemos tu ruta actual de acceso al Login
-  
-  // 3. RUTA PROTEGIDA (Solo accesible para el Administrador Logueado)
-  // Cuando en el Login hacemos window.location.href = '/admin', el Router lee esta línea.
-  // Antes de dibujar el componente, ejecuta el authGuard. Si no hay token, te rebota a /login.
+  //  RUTA PROTEGIDA (Solo accesible para el Administrador Logueado)
   { 
     path: 'admin', 
     component: PanelAdminComponent, 
     canActivate: [authGuard] 
   },
-
-  // 4. RUTA COMODÍN (Opcional - Buena Práctica): 
-  // Si el usuario escribe cualquier pavada en la URL (ej: /asdasd), lo redirige al catálogo automáticamente
+  // RUTA COMODÍN: 
   { path: '**', redirectTo: 'modelos' }
 ];
