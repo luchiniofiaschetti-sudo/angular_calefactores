@@ -3,12 +3,10 @@
 
   <ng-container *ngIf="carrito$ | async as carrito">
     
-    <!-- Caso carrito vacío -->
     <div *ngIf="carrito.length === 0" class="carrito-vacio">
       <p>Tu carrito está vacío. ¡Agregá un calefactor desde el catálogo!</p>
     </div>
 
-    <!-- Caso carrito con items -->
     <div *ngIf="carrito.length > 0">
       <ul class="carrito-lista">
         <li *ngFor="let item of carrito" class="carrito-item">
@@ -18,12 +16,9 @@
             <p><strong>En el carrito:</strong> {{ item.cantidad }} unidades</p>
           </div>
 
-          <!-- Contenedor estético de eliminación -->
           <div class="item-descarte">
             <label>Cantidad a eliminar:</label>
             
-            <!-- Guardamos la selección del usuario en una variable temporal del HTML (#cantEliminar) -->
-            <!-- Arranca en 1 y su máximo es lo que el usuario tiene guardado actualmente -->
             <app-input-integer
               #cantEliminar
               [cantidad]="1"
@@ -31,7 +26,6 @@
               (cantidadChange)="cantEliminar.cantidad = $event">
             </app-input-integer>
 
-            <!-- Botón que ejecuta la acción real del servicio usando el valor del input -->
             <button class="btn-quitar" (click)="carritoService.quitar(item.id_calefactor, cantEliminar.cantidad)">
               Quitar del carrito
             </button>
@@ -39,7 +33,6 @@
         </li>
       </ul>
 
-      <!-- Totales y acciones -->
       <div class="carrito-total">
         <p><strong>Total a pagar:</strong> ${{ calcularTotal(carrito) }}</p>
         <p><strong>Cantidad total de ítems:</strong> {{ calcularCantidadTotal(carrito) }}</p>

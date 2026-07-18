@@ -62,10 +62,9 @@ export class PanelAdminComponent {
     this.modeloService.agregarModelo(nuevoModelo).subscribe({
       next: () => {
         alert('Modelo agregado correctamente');
-        this.formAgregar.reset(); // 1. Limpia los casilleros del formulario de alta
-        this.modelos$ = this.modeloService.getModelos(); // 2. Refresca la lista en tiempo real
+        this.formAgregar.reset();
+        this.modelos$ = this.modeloService.getModelos();
       },
-      // 3. Agregamos el tipado estricto ': any' para el compilador
       error: (err: any) => console.error('Error al agregar modelo:', err)
     });
   }

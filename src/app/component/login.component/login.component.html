@@ -1,7 +1,6 @@
 <div class="login-container">
   <h2>Iniciar Sesión (Administración)</h2>
 
-  <!-- Vinculamos el formulario reactivo del TS mediante [formGroup] -->
   <form [formGroup]="formLogin" (ngSubmit)="onLogin()">
     
     <div class="form-group">
@@ -13,8 +12,7 @@
       <label for="password">Contraseña:</label>
       <input type="password" id="password" formControlName="password" placeholder="••••••••" />
     </div>
-
-    <!-- El botón se deshabilita automáticamente si el usuario no completó los campos -->
+    
     <button type="submit" [disabled]="formLogin.invalid">Ingresar</button>
   </form>
 </div>

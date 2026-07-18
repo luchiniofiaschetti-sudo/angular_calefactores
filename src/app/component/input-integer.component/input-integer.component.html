@@ -1,16 +1,11 @@
 <div class="botonera">
-   <!-- Deshabilitamos el botón de restar si ya está en cero -->
    <button (click)="restarCantidad()" [disabled]="cantidad <= 0">–</button>
-   
-   <!-- Enlace seguro para controlar lo que escribe el usuario -->
    <input 
       type="number" 
       [ngModel]="cantidad"
       (ngModelChange)="onChangeInput($event)"
       [min]="0"
       [max]="maximo">
-      
-   <!-- Deshabilitamos el botón de sumar si ya llegó al stock máximo -->
    <button (click)="sumarCantidad()" [disabled]="cantidad >= maximo">+</button>
 </div>
  

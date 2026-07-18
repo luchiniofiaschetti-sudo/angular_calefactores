@@ -27,19 +27,12 @@ export class CalefactorComponent implements OnInit {
     this.calefactores$ = this.route.paramMap.pipe(
       switchMap(params => {
         this.id_modelo = Number(params.get('id_modelo'));
-        
-        // Llamamos al servicio de calefactores
         return this.calefactorService.getCalefactoresPorModelo(this.id_modelo).pipe(
-          
-          // CAPTURA DE ERROR: Si el backend tira un 404, entra acá inmediatamente
           catchError(error => {
             console.warn('API respondió con error (ej. 404), devolviendo array vacío:', error);
-            
-            // Si es un 404 (No Encontrado), devolvemos un array vacío seguro
             if (error.status === 404) {
               return of([]); // 'of([])' crea un observable con un array vacío de inmediato
             }
-            
             // Si es otro tipo de error (como un 500 de servidor caído), lo dejamos pasar o relanzamos
             return of([]); 
           })

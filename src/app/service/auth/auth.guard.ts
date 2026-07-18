@@ -17,10 +17,8 @@ export const authGuard: CanActivateFn = () => {
   const token = authService.getToken();
 
   if (token) {
-    // ✅ Hay token → acceso permitido
     return true;
   } else {
-    // ❌ No hay token → redirigimos al login
     router.navigate(['/login']);
     return false;
   }

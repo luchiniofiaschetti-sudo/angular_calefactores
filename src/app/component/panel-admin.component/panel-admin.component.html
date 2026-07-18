@@ -1,7 +1,6 @@
 <div class="admin-container">
     <h2>Panel de Administración</h2>
   
-    <!-- Lista de modelos para referencia -->
     <div *ngIf="modelos$ | async as modelos">
       <h3>Modelos existentes</h3>
       <ul>
@@ -12,8 +11,7 @@
         </li>
       </ul>
     </div>
-  
-    <!-- Formulario para agregar -->
+
     <form [formGroup]="formAgregar" (ngSubmit)="onAgregar()">
       <h3>Agregar Modelo</h3>
       <input formControlName="nombre" placeholder="Nombre" />
@@ -23,7 +21,6 @@
       <button type="submit" [disabled]="formAgregar.invalid">Agregar</button>
     </form>
   
-    <!-- Formulario para modificar -->
     <form [formGroup]="formModificar" (ngSubmit)="onModificar()">
       <h3>Modificar Modelo</h3>
       <input formControlName="id_modelo" placeholder="ID del modelo" />

@@ -1,15 +1,11 @@
-<!-- Envolvemos todo el bloque izquierdo en una etiqueta main -->
 <main class="contenido-principal">
   <h2>Lista de Modelos</h2>
 
-  <!-- El pipe async se suscribe a modelos$, maneja la carga y limpia la memoria al salir -->
   <div *ngIf="modelos$ | async as modelos; else cargando">
     
-    <!-- Validamos si el servidor nos devolvió elementos -->
     <div *ngIf="modelos.length > 0; else sinDatos" class="modelos-grid">
       <div class="card" *ngFor="let m of modelos">
         
-        <!-- Imagen protegida -->
         <img *ngIf="m.imagen; else sinImagen" [src]="m.imagen" alt="{{ m.nombre }}">
         <ng-template #sinImagen>
           <img src="assets/img/placeholder.png" alt="Sin imagen disponible">
@@ -22,19 +18,16 @@
       </div>
     </div>
 
-    <!-- Mensaje si la API responde pero el array viene vacío [] -->
     <ng-template #sinDatos>
       <p>No se encontraron modelos para esta selección.</p>
     </ng-template>
   </div>
 
-  <!-- Bloque de carga mientras la API responde -->
   <ng-template #cargando>
     <p>Cargando modelos...</p>
   </ng-template>
 </main>
 
-<!-- Filtros (Hijo derecho directo del Flexbox global) -->
 <aside class="filtros">
   <h3>Seleccionar por:</h3>
   <a [routerLink]="['/modelos']" [queryParams]="{campo: 'categoria', filtro: 'domestico'}">Doméstico</a>

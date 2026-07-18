@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-// CORRECCIÓN A: Quitamos el .js del import para que el compilador encuentre el módulo
 import { AuthService } from '../../service/auth/auth.service.js';
 
 @Component({
@@ -35,14 +34,11 @@ export class LoginComponent {
 
     this.authService.login(usuario, password).subscribe({
       next: (token: string) => {
-        // 1. Guardamos el nombre del usuario en el almacenamiento local
         localStorage.setItem('usuarioAdmin', usuario);
 
         console.log('Login correcto. Token verificado:', token);
         alert(`¡Bienvenido ${usuario}!`);
-
         /* 
-          2. TRUCO DE SINCRONIZACIÓN MÁGICA:
           Para que el componente principal 'App' se entere del nombre en este preciso segundo
           sin necesidad de recargar la página con F5, forzamos una recarga limpia del navegador.
           Esto limpia la memoria de Angular, activa el Interceptor y dibuja el saludo al instante.
