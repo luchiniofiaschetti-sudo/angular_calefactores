@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+
 import { Calefactor } from '../interfaces/calefactor.js';
 
 @Injectable({ providedIn: 'root' })

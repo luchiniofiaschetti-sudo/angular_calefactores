@@ -1,9 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { ModeloService } from "../../service/modelo.service.js";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { Modelo } from "../../interfaces/modelos.js";
 import { Component, OnInit } from "@angular/core";
 import { Observable, switchMap } from "rxjs";
+
+import { ModeloService } from "../../service/modelo.service.js";
+import { Modelo } from "../../interfaces/modelos.js";
+
 
 @Component({
   selector: 'app-modelos',

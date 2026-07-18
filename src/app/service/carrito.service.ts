@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { Calefactor } from '../interfaces/calefactor.js';
 
 @Injectable({ providedIn: 'root' })
@@ -11,15 +12,27 @@ export class CarritoService {
 
   constructor() {}
 
+  public getCantidadEnCarrito(id_calefactor: number): number {
+    const item = this.items.find(c => c.id_calefactor === id_calefactor);
+    return item ? item.cantidad : 0;
+  }
+
   public agregar(calefactor: Calefactor, cantidad: number = 1): void {
     let index = -1; 
 
     for (let i = 0; i < this.items.length; i++) {
       const c = this.items[i]; 
-        if (c.id_calefactor === calefactor.id_calefactor) {
-          index = i; 
-          break;  
-        }
+      if (c.id_calefactor === calefactor.id_calefactor) {
+        index = i; 
+        break;  
+      }
+    }
+
+    const cantidadActual = index !== -1 ? this.items[index].cantidad : 0;
+
+    if (cantidadActual + cantidad > calefactor.stock) {
+      alert(`No puedes agregar más unidades. Stock máximo: ${calefactor.stock}`);
+      return;
     }
 
     if (index === -1) {

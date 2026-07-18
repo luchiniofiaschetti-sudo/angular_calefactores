@@ -1,6 +1,5 @@
 <div class="modulo-ventas">
-  
-  <!-- COLUMNA IZQUIERDA: Catálogo de calefactores -->
+
   <main class="seccion-catalogo">
     <h2>Lista de Calefactores</h2>
 
@@ -32,7 +31,7 @@
               <td>
                 <app-input-integer
                   [cantidad]="calefactor.cantidad"
-                  [maximo]="calefactor.stock"
+                  [maximo]="calefactor.stock - carritoService.getCantidadEnCarrito(calefactor.id_calefactor)"
                   (cantidadChange)="calefactor.cantidad = $event">
                 </app-input-integer>
               </td>
@@ -43,6 +42,7 @@
               </td>
             </tr>
           </tbody>
+
         </table>
       </ng-template>
     </div>
@@ -52,7 +52,6 @@
     </ng-template>
   </main>
 
-  <!-- COLUMNA DERECHA: El carrito como un aside visual (Siempre visible) -->
   <aside class="seccion-carrito">
     <app-compra></app-compra>
   </aside>

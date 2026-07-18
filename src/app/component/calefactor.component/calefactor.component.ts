@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, catchError, of } from 'rxjs'; 
+
 import { Calefactor } from '../../interfaces/calefactor.js';
 import { CalefactorService } from '../../service/calefactor.service.js';
 import { InputIntegerComponent } from '../input-integer.component/input-integer.component.js';
@@ -44,6 +45,7 @@ export class CalefactorComponent implements OnInit {
 
   public agregarCantidad(calefactor: Calefactor, nuevaCantidad: number) {
     this.carritoService.agregar(calefactor, nuevaCantidad);
+    calefactor.cantidad = 0;
   }
 
   public mostrarAviso(mensaje: string) {

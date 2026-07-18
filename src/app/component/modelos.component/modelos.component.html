@@ -8,7 +8,7 @@
         
         <img *ngIf="m.imagen; else sinImagen" [src]="m.imagen" alt="{{ m.nombre }}">
         <ng-template #sinImagen>
-          <img [src]="assets/img/placeholder.png" alt="Sin imagen disponible">
+          <img src="assets/img/placeholder.png" alt="Sin imagen disponible">
         </ng-template>
 
         <h3>{{ m.nombre }}</h3>
